@@ -1,0 +1,9 @@
+// Background variables
+$background-image: "../images/site/checkerboard.jpg";
+
+
+// Styles...
+
+body {
+    background-image: url($background-image); // Change the background image of the site
+}

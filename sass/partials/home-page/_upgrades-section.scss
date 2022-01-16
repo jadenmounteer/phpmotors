@@ -1,0 +1,36 @@
+.upgrades-section .content-title{
+    margin-bottom: 10px;
+}
+
+.upgrade-div {
+    text-align: center;
+    width: 90%;
+    font-family: $text-font;
+}
+.upgrade-background {
+    background-color: $border-color;
+    min-height: 90%;
+    border: 1px solid black;
+    @include breakpoint(medium) {
+        //width: 300px;
+    }
+}
+
+.upgrade-img {
+    margin-top: 10px;
+}
+
+.upgrades-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 10px;
+
+}
+
+.upgrades-section {
+    @include breakpoint(medium) {
+        grid-column:  1 / 2;
+        grid-row: 1 / 2;
+        width: 90%;
+    }
+}

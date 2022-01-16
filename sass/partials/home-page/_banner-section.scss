@@ -1,0 +1,63 @@
+
+/*** Style the call to action button ***/
+.call-to-action-button:hover {
+    cursor: pointer !important;
+}
+.call-to-action-bottom {
+    // Center the button with flexbox
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include breakpoint(medium) {
+        display: none;
+    }
+
+}
+
+.call-to-action-top {
+    display: none;
+    @include breakpoint(medium) {
+        // Center the button with flexbox
+        display: block;
+        margin-top: 60px;
+        margin-left: 20px;
+        margin-bottom: -100px;
+    }
+}
+
+
+/*** Style the banner description div ***/
+.banner-description-div {
+    margin-left: 20px;
+    color: $border-color;
+    font-family: $text-font;
+    margin-top: 10px;
+    font-size: 0.9em;
+    margin-bottom: -3em;
+}
+
+/*** Style the banner image ***/
+.banner-img {
+    margin-bottom: 20px;
+}
+
+
+
+.call-to-action-button-top {
+    cursor: pointer;
+}
+
+.call-to-action-button {
+    background-color: $border-color;
+    font-family: $text-font;
+    font-size: 1.5em;
+    color: $light-text-color;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.banner-description-text{
+    color: #1D5281;
+}

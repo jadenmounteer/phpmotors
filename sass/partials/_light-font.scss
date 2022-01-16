@@ -1,0 +1,5 @@
+// Make all of the text with a class of light-font, lighter
+.light-font {
+    font-family: $text-font;
+    color: $light-text-color;
+}

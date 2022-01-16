@@ -1,0 +1,15 @@
+.reviews-section {
+    font-family: $text-font;
+    @include breakpoint(medium) {
+        grid-column:  2 / 3;
+        width: 90%;
+    }
+}
+
+.reviews-section  h1 {
+    margin-bottom: 10px;
+}
+
+.review {
+    margin-bottom: 10px;
+}
