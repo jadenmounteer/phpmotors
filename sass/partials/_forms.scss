@@ -1,0 +1,42 @@
+
+
+form input {
+    width: 250px;
+    height: 30px;
+    transition: border-color 1s;
+}
+
+
+
+.form-div {
+    margin-top: 10px;
+    text-align: center;
+    @include breakpoint(medium) {
+        text-align: left;
+        margin-left: 10px;
+    }
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+}
+
+form label{
+    font-family: $text-font;
+}
+
+.form-submit-button {
+    background-color: $border-color;
+    font-family: $text-font;
+    transition: background-color .2s;
+}
+
+.form-submit-button:hover {
+    cursor: pointer;
+    background-color: $light-border-color;
+}
+
+form input:focus {
+    border-color: $border-color;
+}

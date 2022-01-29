@@ -38,11 +38,14 @@ $action = filter_input(INPUT_GET, 'action');
 
 // Deliver the view based off of the action
 switch ($action) {
-    case '':
-        
+    case 'login':
+        include '../view/login.php';
+        break;
+    case 'register':
+        include '../view/registration.php';
         break;
     default: 
-        include '';
+        include '../view/500.php';
         break;
 }
 

@@ -8,6 +8,7 @@ $nav-background-color: #3a3a3a;
 // Content variables
 $content-background-color: #ffffff;
 $border-color: #4c96d7;
+$light-border-color: #5e9dd4;
 
 // Breakpoints
 $break-large: 1700px;
@@ -33,5 +34,6 @@ $break-small: 510px;
 @import "partials/home-page/banner-section";
 @import "partials/home-page/reviews-section";
 @import "partials/home-page/upgrades-section";
+@import "partials/forms";
 
 
