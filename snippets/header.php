@@ -1,6 +1,6 @@
 <!-- Logo -->
 <div class="logo-div">
-    <img class="logo-img responsive-image" src="../images/site/logo.png" alt="The PHP Motors logo">
+    <img class="logo-img responsive-image" src="/phpmotors/images/site/logo.png" alt="The PHP Motors logo">
 </div>
 <!-- User login -->
 <div class="user-login-div">

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css" media="screen">
+    <link rel="stylesheet" href="./css/styles.css" media="screen">
     <title>PHP Motors | Home</title>
 </head>
 <body>
@@ -16,9 +16,14 @@
         
         <!-- The nav section -->
         <nav>
-            <ul class="nav-list">
-            <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php'; ?> 
-            </ul>
+            
+            
+            <?php 
+                //require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php';
+                echo $navList;
+            ?> 
+
+
         </nav>
 
         <!-- The main content of the page -->
@@ -38,7 +43,7 @@
                     </div>
                     <!-- The banner image -->
                     <div class="banner-img-div">
-                        <img class="banner-img responsive-image" src="../images/delorean-no-background.jpg" alt="An image of a Delorean">
+                        <img class="banner-img responsive-image" src="./images/delorean-no-background.jpg" alt="An image of a Delorean">
                     </div>
                     <!-- The call to action bottom button -->
                     <div class="call-to-action-button-div call-to-action-bottom">
@@ -65,25 +70,25 @@
                         <div class="upgrades-grid">
                             <div class="upgrade-div">
                                 <div class="upgrade-background">
-                                <img class="upgrade-img" src="../images/upgrades/flux-cap.png" alt="Flux capacitor">
+                                <img class="upgrade-img" src="./images/upgrades/flux-cap.png" alt="Flux capacitor">
                                 </div>
                                 <a href="#">Flux capacitor</a>
                             </div>
                             <div class="upgrade-div">
                                 <div class="upgrade-background">
-                                <img class="upgrade-img" src="../images/upgrades/flame.jpg" alt="Flame decals">
+                                <img class="upgrade-img" src="./images/upgrades/flame.jpg" alt="Flame decals">
                                 </div>
                                 <a href="#">Flame Decals</a>
                             </div>
                             <div class="upgrade-div">
                                 <div class="upgrade-background">
-                                <img class="upgrade-img" src="../images/upgrades/bumper_sticker.jpg" alt="Bumper stickers">
+                                <img class="upgrade-img" src="./images/upgrades/bumper_sticker.jpg" alt="Bumper stickers">
                                 </div>
                                 <a href="#">Bumper Stickers</a>
                             </div>
                             <div class="upgrade-div">
                                 <div class="upgrade-background">
-                                <img class="upgrade-img" src="../images/upgrades/hub-cap.jpgh" alt="Hub Caps">
+                                <img class="upgrade-img" src="./images/upgrades/hub-cap.jpg" alt="Hub Caps">
                                 </div>
                                 <a href="#">Hub Caps</a>
                             </div>

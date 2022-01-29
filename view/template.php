@@ -16,9 +16,13 @@
         
         <!-- The nav section -->
         <nav>
-            <ul class="nav-list">
-            <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php'; ?> 
-            </ul>
+            
+            <?php 
+            //require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php'; 
+            echo $navList;
+            
+            ?> 
+            
         </nav>
 
         <!-- The main content of the page -->

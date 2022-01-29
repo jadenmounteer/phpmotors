@@ -5,7 +5,7 @@
 function phpmotorsConnect() {
     // Define the necessary variables
     $server = 'mysql';
-    $dbname = 'phpmotor';
+    $dbname = 'phpmotors';
     $username = 'iClient';
     $password = 'Kp1AsGS)tBoc*dRR';
     $dsn = "mysql:host=$server;dbname=$dbname";
