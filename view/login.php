@@ -29,6 +29,12 @@
                 <h1 class="content-title">Sign in</h1>
                 <!-- Prompt the user for their email and password -->
                 <div class="form-div">
+                    <?php
+                        // Show any messages that need to be displayed
+                        if (isset($message)) {
+                        echo $message;
+                        }
+                    ?>
                     <form action="/action_page.php">
                         <label for="email">Email <strong>(Required)</strong></label><br>
                         <input type="email" id="email" name="email" required><br>

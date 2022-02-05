@@ -29,20 +29,28 @@
                 <h1 class="content-title">Register</h1>
                 <!-- Prompt the user to register -->
                 <div class="form-div">
-                    <form action="/action_page.php">
-                        <label for="firstname">First Name <strong>(Required)</strong></label><br>
-                        <input type="text" id="firstname" name="firstname" required><br>
-                        <label for="lastname">Last Name <strong>(Required)</strong></label><br>
-                        <input type="text" id="lastname" name="lastname" required><br>
-                        <label for="email">Email <strong>(Required)</strong></label><br>
-                        <input type="email" id="email" name="email" required><br>
-                        <label for="password">Password <strong>(Required)</strong></label><br>
-                        <input type="password" id="password" name="password" required><br><br>
+                <?php
+                    // Show any messages that need to be displayed
+                    if (isset($message)) {
+                    echo $message;
+                    }
+                ?>
+                    <form action="/phpmotors/accounts/index.php" method="post">
+                        <label for="clientFirstname">First Name <strong>(Required)</strong></label><br>
+                        <input type="text" id="firstname" name="clientFirstname" required><br>
+                        <label for="clientLastname">Last Name <strong>(Required)</strong></label><br>
+                        <input type="text" id="lastname" name="clientLastname" required><br>
+                        <label for="clientEmail">Email <strong>(Required)</strong></label><br>
+                        <input type="email" id="email" name="clientEmail" required><br>
+                        <label for="clientPassword">Password <strong>(Required)</strong></label><br>
+                        <input type="password" id="password" name="clientPassword" required><br><br>
                         <input class="form-submit-button" type="submit" value="Register">
+                        <!-- Add the action name - value pair -->
+                        <input type="hidden" name="action" value="register">
                     </form> 
                 </div>
 
-                <!-- TODO: include something here to enbable to user to go to the registration view -->
+                
 
             </section>
         </main>
