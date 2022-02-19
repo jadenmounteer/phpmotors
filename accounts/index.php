@@ -70,7 +70,6 @@ switch ($action) {
             include '../view/registration.php';
             exit;
         }
-
         break;
     default: 
         include '../view/500.php';

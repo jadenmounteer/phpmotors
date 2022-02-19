@@ -1,6 +1,6 @@
 
 
-form input {
+form input, select {
     width: 250px;
     height: 30px;
     transition: border-color 1s;
@@ -40,3 +40,4 @@ form label{
 form input:focus {
     border-color: $border-color;
 }
+

@@ -16,14 +16,10 @@
         
         <!-- The nav section -->
         <nav>
-            
-            
             <?php 
                 //require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/navigation.php';
                 echo $navList;
             ?> 
-
-
         </nav>
 
         <!-- The main content of the page -->

@@ -183,7 +183,7 @@ footer {
     grid-row: 1 / 2;
     width: 90%; } }
 
-form input {
+form input, select {
   width: 250px;
   height: 30px;
   transition: border-color 1s; }
