@@ -5,6 +5,8 @@
 require_once './library/connections.php';
 // Get the PHP Motors model for use as needed
 require_once './model/main-model.php';
+// Get the functions library
+require_once './library/functions.php';
 
 
 // Get the array of classifications
@@ -15,12 +17,7 @@ var_dump($classifications);
 */
 
 // Build a navigation bar using the $classifications array
-$navList = '<ul class="nav-list">';
-$navList .= "<li class='nav-list-item'><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
-foreach ($classifications as $classification) {
- $navList .= "<li class='nav-list-item'><a href='/phpmotors/index.php?action=".urlencode($classification['classificationName'])."' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
-}
-$navList .= '</ul>';
+$navList = buildNavigationBar($classifications);
 
 //echo $navList;
 //exit;
@@ -31,7 +28,7 @@ $navList .= '</ul>';
 // the GET object (input from links) to see if there 
 // is a "name - value pair (aka key - value pair) where the key 
 // is the word "action". If such a combination is found, the value is stored in the $action variable.
-$action = filter_input(INPUT_GET, 'action');
+$action = trim(filter_input(INPUT_GET, 'action',));
     if ($action == NULL) {
         $action = filter_input(INPUT_POST, 'action');
     }

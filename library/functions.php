@@ -21,4 +21,36 @@ function checkEmail($clientEmail){
    }
 
 
+/**
+ * Checks the length of a given string.
+ * Returns the string if the string is less than or equal to the max length.
+ * Returns 0 if it is larger.
+ * @param - The string to checl
+ */
+function checkLength($stringToCheck, $maxLength) {
+    if (strlen($stringToCheck) <= $maxLength) {
+        return $stringToCheck;
+    }
+    else {
+        return 0;
+    }
+}
+
+/**
+ * Builds the navigation bar.
+ * @param - An array of classifications
+ * @return - A string variable holding the HTML navigation list
+ */
+function buildNavigationBar($classifications) {
+    $navList = '<ul class="nav-list">';
+    $navList .= "<li class='nav-list-item'><a href='/phpmotors/' title='View the PHP Motors home page'>Home</a></li>";
+    foreach ($classifications as $classification) {
+    $navList .= "<li class='nav-list-item'><a href='/phpmotors/index.php?action=".urlencode($classification['classificationName'])."' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
+    }
+    $navList .= '</ul>';
+
+    return $navList;
+}
+
+
 ?>

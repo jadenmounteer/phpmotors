@@ -10,6 +10,10 @@ require_once '../model/main-model.php';
 // Include the vehicles model
 require_once '../model/vehicles-model.php';
 
+// Get the functions library
+require_once '../library/functions.php';
+
+
 
 // Get the array of classifications
 $classifications = getClassifications();
@@ -19,51 +23,7 @@ var_dump($classifications);
 */
 
 // Build a navigation bar using the $classifications array
-
-$navList = '<ul class="nav-list">';
-$navList .= "<li class='nav-list-item'><a href='/phpmotors/' title='View the PHP Motors home page'>Home</a></li>";
-foreach ($classifications as $classification) {
- $navList .= "<li class='nav-list-item'><a href='/phpmotors/index.php?action=".urlencode($classification['classificationName'])."' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
-}
-$navList .= '</ul>';
-
-
-
-/*** Build the classification drop down menu ***/
-
-// Create a $classificationList variable to build a dynamic drop-down select list. 
-$classificationList = '<label for="classificationId"> Choose a Car Classificartion*</label><br>';
-$classificationList .= '<select class="dropdown-menu" id="classificationId" name="classificationId">';
-// Loop through the classifications and display them as options.
-// The classificationName must appear in the browser as an option to select, but 
-// the classificationId must be the value of each option.
-// This list element will be used in the "add vehicle" view to provide a list of 
-// classifications that already exist in the database.
-foreach ($classifications as $classification) {
-    $classificationList .= '<option value="';
-    $classificationList .= "$classification[classificationId]";
-    $classificationList .= '"';
-    $classificationList .= ">$classification[classificationName]</option>";
-}
-// Close the classification list
-$classificationList .= '</select>';
-
-
-/***  Testing ***/
-//echo $navList;
-//echo $classificationList;
-
-
-// Watch for and capture name-value pairs for decision making.
-
-// Contain control structures to deliver views (discussed below).
-
-// Contain control structures to process requests to add new classifications to the carclassifications table and vehicles to the inventory table.
-
-// The controller should return data check error messages to the view from which the data was sent.
-
-// The controller should return success or failure messages to the view from which the data was sent as described below.
-
+$navList = buildNavigationBar($classifications);
 
 // // Check the content being requested
 // // Filter out any malicious input
@@ -80,11 +40,14 @@ $action = filter_input(INPUT_GET, 'action');
 switch ($action) {
     case 'add-classification':
         // Filter and store the data
-        $classificationName = filter_input(INPUT_POST, 'classificationName');
+        $classificationName = trim(filter_input(INPUT_POST, 'classificationName', FILTER_SANITIZE_STRING));
+
+        // Check the length of the classification name
+        $classificationName = checkLength($classificationName, 30);
 
         // Check for missing data
         if(empty($classificationName)){
-            //$message = '<p>Please provide information for all empty form fields.</p>';
+            $message = '<p>Please provide information for all empty form fields.</p>';
             include '../view/add-classification.php';
             exit; 
         }
@@ -108,15 +71,15 @@ switch ($action) {
 
     case 'add-vehicle':
         // Filter and store the data
-        $classificationId = filter_input(INPUT_POST, 'classificationId');
-        $invMake = filter_input(INPUT_POST, 'invMake');
-        $invModel = filter_input(INPUT_POST, 'invModel');
-        $invDescription = filter_input(INPUT_POST, 'invDescription');
-        $invImage = filter_input(INPUT_POST, 'invImage');
-        $invThumbnail = filter_input(INPUT_POST, 'invThumbnail');
-        $invPrice = filter_input(INPUT_POST, 'invPrice');
-        $invStock = filter_input(INPUT_POST, 'invStock');
-        $invColor = filter_input(INPUT_POST, 'invColor');
+        $classificationId = trim(filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_NUMBER_INT));
+        $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
+        $invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
+        $invDescription = trim(filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_STRING));
+        $invImage = trim(filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_STRING));
+        $invThumbnail = trim(filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_STRING));
+        $invPrice = trim(filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION));
+        $invStock = trim(filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT));
+        $invColor = trim(filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_STRING));
 
         // Check for missing data
         if(
@@ -129,7 +92,6 @@ switch ($action) {
             empty($invPrice) ||
             empty($invStock) ||
             empty($invColor)
-            
             ){
             $message = '<p>Please provide information for all empty form fields.</p>';
             include '../view/add-vehicle.php';

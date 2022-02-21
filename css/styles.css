@@ -221,4 +221,8 @@ form label {
 form input:focus {
   border-color: #4c96d7; }
 
+textarea {
+  width: 400px;
+  height: 120px; }
+
 /*# sourceMappingURL=styles.css.map */

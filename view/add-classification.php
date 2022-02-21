@@ -36,7 +36,8 @@
                     ?>
                     <form action="/phpmotors/vehicles/index.php" method="post">
                             <label for="classificationName">Classification Name<strong>*</strong></label><br>
-                            <input type="text" id="classificationName" name="classificationName" required><br><br>
+                            <input type="text" id="classificationName" name="classificationName" required maxlength="30">
+                            <span class="info-text">Classification names cannot be more than 30 characters.</span><br><br>
                             <input class="form-submit-button" type="submit" value="Add Classification">
                             <!-- Add the action name - value pair -->
                             <input type="hidden" name="action" value="add-classification">
