@@ -35,12 +35,15 @@
                         echo $message;
                         }
                     ?>
-                    <form action="/action_page.php">
-                        <label for="email">Email <strong>(Required)</strong></label><br>
-                        <input type="email" id="email" name="email" required><br>
-                        <label for="password">Password <strong>(Required)</strong></label ><br>
-                        <input type="password" id="password" name="password" required><br><br>
-                        <input class="form-submit-button" type="submit" value="Sign in">
+                    <form action="/phpmotors/accounts/index.php" method="post">
+                        <label for="clientEmail">Email <strong>(Required)</strong></label><br>
+                        <input type="email" id="clientEmail" name="clientEmail" required <?php if(isset($clientEmail)){echo "value='$clientEmail'";}  ?>><br>
+                        <label for="clientPassword">Password <strong>(Required)</strong></label ><br>
+                        <input type="password" id="clientPassword" name="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+                        <span class="info-text">Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character.</span><br><br>
+                        <input class="form-submit-button" type="submit" value="Sign In">
+                        <!-- Add the action name - value pair -->
+                        <input type="hidden" name="action" value="login">
                     </form> <br>
                     <a title="register link" class="user-login-button light-font" href="/phpmotors/accounts/index.php?action=register">Not a member yet?</a>
                 </div>

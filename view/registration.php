@@ -37,13 +37,14 @@
                 ?>
                     <form action="/phpmotors/accounts/index.php" method="post">
                         <label for="clientFirstname">First Name <strong>(Required)</strong></label><br>
-                        <input type="text" id="firstname" name="clientFirstname" required><br>
+                        <input type="text" id="firstname" name="clientFirstname" required <?php if(isset($clientFirstname)){echo "value='$clientFirstname'";}  ?>><br>
                         <label for="clientLastname">Last Name <strong>(Required)</strong></label><br>
-                        <input type="text" id="lastname" name="clientLastname" required><br>
+                        <input type="text" id="lastname" name="clientLastname" required <?php if(isset($clientLastname)){echo "value='$clientLastname'";}  ?>><br>
                         <label for="clientEmail">Email <strong>(Required)</strong></label><br>
-                        <input type="email" id="email" name="clientEmail" required><br>
+                        <input type="email" id="email" name="clientEmail" required <?php if(isset($clientEmail)){echo "value='$clientEmail'";}  ?>><br>
                         <label for="clientPassword">Password <strong>(Required)</strong></label><br>
-                        <input type="password" id="password" name="clientPassword" required><br><br>
+                        <input type="password" id="password" name="clientPassword" required pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$">
+                        <span class="info-text">Passwords must be at least 8 characters and contain at least 1 number, 1 capital letter and 1 special character.</span><br><br>
                         <input class="form-submit-button" type="submit" value="Register">
                         <!-- Add the action name - value pair -->
                         <input type="hidden" name="action" value="register">
