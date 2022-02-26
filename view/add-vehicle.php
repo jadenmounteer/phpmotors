@@ -1,4 +1,7 @@
 <?php
+// Check if the user is logged in and is an admin...
+checkIfAdminAndLoggedIn();
+
 // Create a $classificationList variable to build a dynamic drop-down select list. 
 $classificationList = '<label for="classificationId"> Choose a Car Classificartion*</label><br>';
 $classificationList .= '<select class="dropdown-menu" id="classificationId" name="classificationId">';

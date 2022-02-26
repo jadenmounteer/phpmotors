@@ -36,10 +36,12 @@ $action = trim(filter_input(INPUT_GET, 'action',));
         $action = filter_input(INPUT_POST, 'action');
     }
 
-// Check if the firstname cookie exists, get its value
+// Check if the firstname cookie exists, get its value (THIS HAS BEEN REPLACED BY THE SESSION MESSAGE)
+/*
 if(isset($_COOKIE['firstname'])){
     $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
 }
+*/
 
 // Deliver the view based off of the action
 switch ($action) {

@@ -52,5 +52,24 @@ function buildNavigationBar($classifications) {
     return $navList;
 }
 
+/** 
+ * Checks if the user a user is logged in. Then checks if 
+ * they are an admin. If no to either, they are redirected to the home page.
+ */
+function checkIfAdminAndLoggedIn() {
+    // If the user is not logged in...
+    if(!isset($_SESSION['loggedin'])){
+        // Redirect them to the phpmotors controller to deliver the PHP Motors home view.
+        header('Location: /phpmotors/');
+        exit;
+    }
+    // or does not have a clientLevel greater than 1...
+    if($_SESSION['clientData']['clientLevel'] < 3) {
+        // Redirect them to the phpmotors controller to deliver the PHP Motors home view.
+        header('Location: /phpmotors/');
+        exit;
+    }
+}
+
 
 ?>

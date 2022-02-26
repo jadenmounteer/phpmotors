@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+    // Check if the user is logged in and is an admin...
+    checkIfAdminAndLoggedIn();
+
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

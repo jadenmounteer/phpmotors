@@ -82,7 +82,7 @@ switch ($action) {
             // Set a cookie so we remember the client's name
             setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
             
-            $_SESSION['message'] = "Thanks for registering $clientFirstname. Please use your email and password to login.";
+            $_SESSION['message'] = "<p>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
             //$message = "<p>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
             header('Location: /phpmotors/accounts/?action=login');
             //include '../view/login.php';
@@ -138,13 +138,34 @@ switch ($action) {
         array_pop($clientData);
         // Store the array into the session
         $_SESSION['clientData'] = $clientData;
+        // Create some variables for the client data
+        $clientFirstname = $_SESSION['clientData']['clientFirstname'];
+        $clientLastname = $_SESSION['clientData']['clientLastname'];
+        $clientEmail = $_SESSION['clientData']['clientEmail'];
+        $clientLevel = $_SESSION['clientData']['clientLevel'];
         // Send them to the admin view
         include '../view/admin.php';
         exit;        
         break;
 
+    case 'logout':
+        // Unset the session data
+        unset($_SESSION['clientData']);
+        // Destroy the session
+        session_destroy ();
+        // Return the client to the main phpmotors controller
+        header('Location: /phpmotors/');
+        exit;        
+        break;
+        
     default: 
-        include '../view/500.php';
+        // Create some variables for the client data
+        $clientFirstname = $_SESSION['clientData']['clientFirstname'];
+        $clientLastname = $_SESSION['clientData']['clientLastname'];
+        $clientEmail = $_SESSION['clientData']['clientEmail'];
+        $clientLevel = $_SESSION['clientData']['clientLevel'];
+        include '../view/admin.php'; // Deliver the admin view
+        //include '../view/500.php';
         break;
 }
 

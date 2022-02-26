@@ -1,5 +1,4 @@
 .reviews-section {
-    font-family: $text-font;
     @include breakpoint(medium) {
         grid-column:  2 / 3;
         width: 90%;
@@ -11,5 +10,6 @@
 }
 
 .review {
+    font-family: $text-font;
     margin-bottom: 10px;
 }

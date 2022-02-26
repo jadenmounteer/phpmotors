@@ -147,17 +147,16 @@ footer {
 .banner-description-text {
   color: #1D5281; }
 
-.reviews-section {
-  font-family: "IBM Plex Mono", monospace; }
-  @media (min-width: 950px) {
-    .reviews-section {
-      grid-column: 2 / 3;
-      width: 90%; } }
+@media (min-width: 950px) {
+  .reviews-section {
+    grid-column: 2 / 3;
+    width: 90%; } }
 
 .reviews-section h1 {
   margin-bottom: 10px; }
 
 .review {
+  font-family: "IBM Plex Mono", monospace;
   margin-bottom: 10px; }
 
 .upgrades-section .content-title {
