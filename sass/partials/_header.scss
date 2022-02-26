@@ -14,6 +14,10 @@ header {
   font-size: 1.2em;
   margin-top: 30px;
   margin-right: 50px;
+  display: flex;
+  justify-content: space-between;
+  font-family: $text-font;
+  gap: 2em;
 }
 
 .user-login-button:hover{
@@ -21,3 +25,6 @@ header {
     text-decoration: underline;
 }
 
+.welcome-message{
+
+}

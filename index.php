@@ -1,6 +1,9 @@
 <?php
 // This is the main controller
 
+// Create or access a session
+session_start();
+
 // Get the database connection file
 require_once './library/connections.php';
 // Get the PHP Motors model for use as needed
@@ -32,6 +35,11 @@ $action = trim(filter_input(INPUT_GET, 'action',));
     if ($action == NULL) {
         $action = filter_input(INPUT_POST, 'action');
     }
+
+// Check if the firstname cookie exists, get its value
+if(isset($_COOKIE['firstname'])){
+    $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_STRING);
+}
 
 // Deliver the view based off of the action
 switch ($action) {

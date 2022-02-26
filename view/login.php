@@ -31,8 +31,8 @@
                 <div class="form-div">
                     <?php
                         // Show any messages that need to be displayed
-                        if (isset($message)) {
-                        echo $message;
+                        if (isset($_SESSION['message'])) {
+                            echo $_SESSION['message'];
                         }
                     ?>
                     <form action="/phpmotors/accounts/index.php" method="post">
