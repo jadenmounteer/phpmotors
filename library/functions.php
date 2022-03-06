@@ -57,19 +57,22 @@ function buildNavigationBar($classifications) {
  * they are an admin. If no to either, they are redirected to the home page.
  */
 function checkIfAdminAndLoggedIn() {
-    // If the user is not logged in...
-    if(!isset($_SESSION['loggedin'])){
-        // Redirect them to the phpmotors controller to deliver the PHP Motors home view.
-        header('Location: /phpmotors/');
+    if ($_SESSION['clientData']['clientLevel'] < 2) {
+        header('location: /phpmotors/');
         exit;
-    }
-    // or does not have a clientLevel greater than 1...
-    if($_SESSION['clientData']['clientLevel'] < 3) {
-        // Redirect them to the phpmotors controller to deliver the PHP Motors home view.
-        header('Location: /phpmotors/');
-        exit;
-    }
+       }
 }
+
+// Build the classifications select list 
+function buildClassificationList($classifications){ 
+    $classificationList = '<select name="classificationId" id="classificationList">'; 
+    $classificationList .= "<option>Choose a Classification</option>"; 
+    foreach ($classifications as $classification) { 
+     $classificationList .= "<option value='$classification[classificationId]'>$classification[classificationName]</option>"; 
+    } 
+    $classificationList .= '</select>'; 
+    return $classificationList; 
+   }
 
 
 ?>

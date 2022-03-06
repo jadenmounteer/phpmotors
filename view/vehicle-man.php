@@ -2,6 +2,11 @@
     // Check if the user is logged in and is an admin...
     checkIfAdminAndLoggedIn();
 
+    // Display any messages from the session
+    if (isset($_SESSION['message'])) {
+        $message = $_SESSION['message'];
+    }
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +40,31 @@
                     <a title="add classification link" class="user-login-button light-font" href="/phpmotors/vehicles/index.php?action=add-classification">Add Classification</a>
                     <br>
                     <a title="add vehicle link" class="user-login-button light-font" href="/phpmotors/vehicles/index.php?action=add-vehicle">Add Vehicle</a>
+
+                    <?php
+                    
+                    // Display a message if there is one
+                    if(isset($message)) {
+                        echo $message;
+                    }
+                    // Display a heading and directions and the classification list if there is one
+                    
+                    if (isset($classificationsList)) {
+                        echo '<h2 class="vehicles-by-class-header">Vehicles by Classification</h2>';
+                        echo '<p>Choose a classification to see those vehicles</p>';
+                        echo $classificationsList;
+                    }
+                    ?>
+                    <!-- If JavaScript is disabled, show a message -->
+                    <noscript>
+                        <p><strong>JavaScript must be enabled to use this page.</strong></p>
+                    </noscript>
+                    
+                    <!-- The inventory will be displayed here by DOM manipulation -->
+                    <div class="inventory-display-div">
+                        <table id="inventoryDisplay"></table>
+                    </div>
+                
                 </div>
             </section>
         </main>
@@ -44,6 +74,12 @@
         <?php require_once $_SERVER['DOCUMENT_ROOT'].'/phpmotors/snippets/footer.php'; ?> 
         </footer>
     </div>
-    
+    <!-- Link to the Inventory JavaScript file -->
+    <script src="../js/inventory.js"></script>
 </body>
 </html>
+
+<?php
+    // Unset any messages
+    unset($_SESSION['message']);
+?>

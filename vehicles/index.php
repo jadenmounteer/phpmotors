@@ -118,7 +118,152 @@ switch ($action) {
         
         break;
 
+    /* * ********************************** 
+    * Get vehicles by classificationId 
+    * Used for starting Update & Delete process 
+    * ********************************** */
+    case 'getInventoryItems':
+        // Get the classificationId
+        $classificationId = filter_input(INPUT_GET, 'classificationId', FILTER_SANITIZE_NUMBER_INT);
+        // Fetch the vehicles by classificationId from the DB
+        $inventoryArray = getInventoryByClassification($classificationId);
+        // Convert the array to a JSON object and send it back
+        echo json_encode($inventoryArray);
+        break;
+    
+
+    /* * ********************************** 
+    * Called if the modify link was clicked.
+    * ********************************** */
+    case 'mod':
+        // Capture the value of the name-value pair passed into the URL 
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
+
+        // Get the info for the vehicle
+        $invInfo = getInvItemInfo($invId);
+
+        // Check if invInfo has any data...
+        if(count($invInfo)<1){
+            $message = 'Sorry, no vehicle information could be found.';
+        }
+
+        // Call a view where the data can be displayed so that the changes
+        // can be made to the data
+        include '../view/vehicle-update.php';
+        exit;
+
+        break;
+
+    /* * ********************************** 
+    * Control structure called when the 
+    * user updates a vehicle.
+    * ********************************** */
+    case 'updateVehicle':
+        // Filter and store the data
+        $classificationId = trim(filter_input(INPUT_POST, 'classificationId', FILTER_SANITIZE_NUMBER_INT));
+        $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
+        $invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
+        $invDescription = trim(filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_STRING));
+        $invImage = trim(filter_input(INPUT_POST, 'invImage', FILTER_SANITIZE_STRING));
+        $invThumbnail = trim(filter_input(INPUT_POST, 'invThumbnail', FILTER_SANITIZE_STRING));
+        $invPrice = trim(filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION));
+        $invStock = trim(filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT));
+        $invColor = trim(filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_STRING));
+        $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+
+        // Check for missing data
+        if(
+            empty($classificationId) ||
+            empty($invMake) ||
+            empty($invModel) ||
+            empty($invDescription) ||
+            empty($invImage) ||
+            empty($invThumbnail) ||
+            empty($invPrice) ||
+            empty($invStock) ||
+            empty($invColor)
+            ){
+            $message = '<p>Please provide information for all empty form fields.</p>';
+            include '../view/vehicle-update.php';
+            exit; 
+        }
+
+        // Send the data to the model
+        $updateResult = updateVehicle($classificationId, $invMake, $invModel,
+            $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $invId);
+        
+        // Check and report the result
+        if($updateResult){
+            $message = "<p>Success. $invMake $invModel was updated.</p>";
+            $_SESSION['message'] = $message;
+            header('location: /phpmotors/vehicles/');
+            exit;
+        } else {
+            $message = "<p>Error: unable to update vehicle.</p>";
+            include '../view/vehicle-update.php';
+            exit;
+        }
+
+        break;
+
+
+    /* * ********************************** 
+    * Control structure called when the 
+    * user clicks on the link to delete a vehicle
+    * ********************************** */
+    case 'del':
+        // Capture the value of the name-value pair passed into the URL 
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
+
+        // Get the info for the vehicle
+        $invInfo = getInvItemInfo($invId);
+
+        // Check if invInfo has any data...
+        if(count($invInfo)<1){
+            $message = 'Sorry, no vehicle information could be found.';
+        }
+        else {
+            $message = 'Note: This delete is permanent';
+        }
+
+        // Call a view where the data can be displayed so that the changes
+        // can be made to the data
+        include '../view/vehicle-delete.php';
+        exit;
+
+        break;
+    
+    /* * ********************************** 
+    * Control structure called when the 
+    * user deletes a vehicle
+    * ********************************** */
+    case 'deleteVehicle':
+        // Filter and store the data
+        $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
+        $invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
+        $invId = filter_input(INPUT_POST, 'invId', FILTER_SANITIZE_NUMBER_INT);
+
+        // Send the data to the model
+        $deleteResult = deleteVehicle($invId);
+        
+        // Check and report the result
+        if($deleteResult){
+            $message = "<p>Success. $invMake $invModel was deleted.</p>";
+            $_SESSION['message'] = $message;
+            header('location: /phpmotors/vehicles/');
+            exit;
+        } else {
+            $message = "<p>Error: $invMake $invModel was not deleted.</p>";
+            $_SESSION['message'] = $message;
+            header('location: /phpmotors/vehicles/');
+            exit;
+        }
+
+        break;
+
     default: 
+        // Create a select list to be displayed in the vehicle management view
+        $classificationsList = buildClassificationList($classifications);
         // if user typed in http://lvh.me:8088/phpmotors/vehicles/ bring them to the vehicle management page
         include '../view/vehicle-man.php'; 
         break;
