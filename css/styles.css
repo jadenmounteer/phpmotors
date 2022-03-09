@@ -28,6 +28,15 @@ body {
 .content-title {
   margin-left: 10px; }
 
+p {
+  font-family: "IBM Plex Mono", monospace; }
+
+.message {
+  margin: 10px; }
+
+.message-link {
+  margin: 10px; }
+
 header {
   display: flex;
   flex-flow: row wrap;
@@ -100,8 +109,9 @@ footer {
 h2 {
   font-family: "IBM Plex Mono", monospace;
   font-weight: 900;
-  margin-top: 10px;
-  font-size: 1.3em; }
+  margin: 10px;
+  margin-top: 20px;
+  font-size: 1.2em; }
 
 /*** Style the call to action button ***/
 .call-to-action-button:hover {

@@ -37,7 +37,15 @@
                 <!-- Since the user is logged in, display their data -->
                 <?php
                     echo "
-                    <h1 class='content-title'> $clientFirstname $clientLastname</h1>
+                    <h1 class='content-title'> $clientFirstname $clientLastname</h1>";
+
+                    // Display any messages from the session
+                    if (isset($_SESSION['message'])) {
+                        echo $_SESSION['message'];
+                    }
+
+                    echo "
+                    <p class='message'>You are logged in<p>
                     <ul class='list-of-reviews'>
                         <li class='review'>First Name: $clientFirstname</li>
                         <li class='review'>Last Name: $clientLastname</li>
@@ -46,8 +54,13 @@
                     ";
 
                     // If the client level is grater than 1, display a paragraph
-                    // with a link that points to the vehicle controller
+                    // with a link that points to the different controllers
                     if($clientLevel > 1){
+                        echo "<h2>Account Management</h2>";
+                        echo "<p class='message'>Use this link to update account information.<p>";
+                        echo "<a class='message-link light-font' href='/phpmotors/accounts?action=updateAccountInfo'>Update Account Information</a> <br>";
+                        echo "<h2>Vehicle Management</h2>";
+                        echo "<p class='message'>Use this link to manage the inventory.<p>";
                         echo "<a class='message-link light-font' href='/phpmotors/vehicles/'>Vehicle Management</a>";
                     }
                     
