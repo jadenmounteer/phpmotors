@@ -79,15 +79,41 @@ function buildVehiclesDisplay($vehicles){
     $dv = '<ul id="inv-display">';
     foreach ($vehicles as $vehicle) {
      $dv .= '<li>';
-     $dv .= "<img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
+     $dv .= "<a href='/phpmotors/vehicles/?action=vehicleInformation&invId=".urlencode($vehicle['invId'])."'><img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></a>";
      $dv .= '<hr>';
-     $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
+     $dv .= "<a href='/phpmotors/vehicles/?action=vehicleInformation&invId=".urlencode($vehicle['invId'])."'><h2>$vehicle[invMake] $vehicle[invModel]</h2></a>";
      $dv .= "<span>$vehicle[invPrice]</span>";
      $dv .= '</li>';
     }
     $dv .= '</ul>';
     return $dv;
    }
+
+// Takes the specific vehicle's information and wraps it up in HTML to deliver to the view
+function buildVehicleInformationDisplay(
+    $invMake, 
+    $invModel, 
+    $invPrice, 
+    $invDescription, 
+    $invImage, 
+    $invColor, 
+    $invStock) {
+        $dv = '<div class="vehicle-information-div">';
+        $dv .= '<div class="vehicle-info-left-col">';
+        $dv .= "<div class='detail-img-div'> <img class='responsive-image detail-img' src='$invImage' alt='An image of $invMake $invModel on phpmotors.com'> </div>";
+        $dv .= "<p>Price: $$invPrice</p>";
+        $dv .= '</div>'; // Closing vehicle info left col div
+        $dv .= '<div class="vehicle-info-right-col">';
+        $dv .= "<h2>$invMake $invModel Details</h2>";
+        $dv .= "<p class='description-paragraph'>$invDescription</p>";
+        $dv .= "<p>Color: $invColor</p>";
+        $dv .= "<p class='description-paragraph'># in Stock: $invStock</p>";
+        $dv .= '</div>'; // Closing vehicle info right col
+        $dv .= '</div>'; // closing vehicle information div
+
+
+        return $dv;
+}
 
 
 

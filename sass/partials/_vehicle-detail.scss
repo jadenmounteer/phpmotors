@@ -1,0 +1,24 @@
+.vehicle-information-div {
+
+    // When the screen reaches medium size...
+    @include breakpoint(medium) {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 50% 50%;
+    }
+
+}
+
+
+.vehicle-info-left-col {
+   //grid-column: 0 / 2;
+
+}
+
+.vehicle-info-right-col {
+    grid-column: 2 / 3;
+}
+
+.vehicle-information-div p {
+    margin-top: 10px;
+}

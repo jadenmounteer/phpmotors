@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles.css" media="screen">
-    <title><?php echo $classificationName; ?> vehicles | PHP Motors, Inc.</title>
+    <title><?php echo "$invMake $invModel"; ?> | PHP Motors, Inc.</title>
 </head>
 <body>
     <!-- The content section that hovers above the background -->
@@ -29,12 +29,12 @@
         <main>
             <!-- The content title -->
             <section class="main-content-section">
-                <h1 class="content-title"><?php echo $classificationName; ?> vehicles</h1>
+                <h1 class="content-title"><?php echo "$invMake $invModel"; ?> </h1>
                 <?php if(isset($message)) {
                     echo $message; }
                 ?>
-                <?php if(isset($vehicleDisplay)) {
-                    echo $vehicleDisplay;
+                <?php if(isset($vehicleInformationDisplay)) {
+                    echo $vehicleInformationDisplay;
                 } ?>
             </section>
         </main>

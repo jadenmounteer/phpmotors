@@ -292,4 +292,16 @@ textarea {
   #inv-display div {
     width: 100%; } }
 
+@media (min-width: 950px) {
+  .vehicle-information-div {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 50% 50%; } }
+
+.vehicle-info-right-col {
+  grid-column: 2 / 3; }
+
+.vehicle-information-div p {
+  margin-top: 10px; }
+
 /*# sourceMappingURL=styles.css.map */

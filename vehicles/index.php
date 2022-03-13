@@ -286,6 +286,54 @@ switch ($action) {
 
         break;
 
+    /* * ********************************** 
+    * Control structure called when the 
+    * user clicks on specific vehicle.
+    * Shows specific vehicle information.
+    * ********************************** */
+    case 'vehicleInformation':
+        // Filter, sanitize, and store the second value being sent through the URL
+        $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_STRING);
+
+        // Grab specific vehicle information
+        $invInfo = getInvItemInfo($invId);
+
+        // If no vehicle is found, set a message and do not change the view
+        if(count($invInfo)<1){
+            $message = 'Sorry, no vehicle information could be found.';
+        }
+        else {
+            // Set the vehicle information to variables so we can access them in the view
+            $invMake = $invInfo["invMake"];
+            $invModel = $invInfo["invModel"];
+            $invPrice = $invInfo["invPrice"];
+
+
+            $invDescription = $invInfo["invDescription"];
+            $invImage = $invInfo["invImage"];
+            $invColor = $invInfo["invColor"];
+            $invStock = $invInfo["invStock"];
+
+            // Format the price
+            //setlocale(LC_MONETARY,"en_US");
+            $priceString = number_format($invPrice);
+            
+
+            // Genererate the display, store it in a variable
+            $vehicleInformationDisplay = buildVehicleInformationDisplay(
+                                            $invMake, 
+                                            $invModel, 
+                                            $priceString, 
+                                            $invDescription, 
+                                            $invImage, 
+                                            $invColor, 
+                                            $invStock);
+        }
+
+        // deliver vehicle detail view
+        include '../view/vehicle-detail.php';
+        break;
+
     default: 
         // Create a select list to be displayed in the vehicle management view
         $classificationsList = buildClassificationList($classifications);
