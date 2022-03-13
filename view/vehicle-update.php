@@ -12,7 +12,7 @@ $classificationList .= '<select class="dropdown-menu" id="classificationId" name
 // classifications that already exist in the database.
 foreach ($classifications as $classification) {
     $classificationList .= "<option value='$classification[classificationId]'";
-
+  
     // Make the dropdown sticky
     if(isset($classificationId)) {
         if($classification['classificationId'] === $classificationId) {

@@ -21,6 +21,10 @@ $break-small: 510px;
     margin: 0 auto;
 }
 
+*, *:before, *:after{
+    box-sizing: inherit;
+   }
+
 // Import the partials
 @import "partials/mixins";
 @import "partials/background";
@@ -37,5 +41,6 @@ $break-small: 510px;
 @import "partials/validation.scss";
 @import "partials/forms";
 @import "partials/vehicles-page/inventoryDisplay.scss";
+@import "partials/classification";
 
 

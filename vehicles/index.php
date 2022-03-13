@@ -138,6 +138,7 @@ switch ($action) {
     case 'mod':
         // Capture the value of the name-value pair passed into the URL 
         $invId = filter_input(INPUT_GET, 'invId', FILTER_VALIDATE_INT);
+        
 
         // Get the info for the vehicle
         $invInfo = getInvItemInfo($invId);
@@ -146,6 +147,9 @@ switch ($action) {
         if(count($invInfo)<1){
             $message = 'Sorry, no vehicle information could be found.';
         }
+
+        // Set the classification ID
+        $classificationId = $invInfo["classificationId"];
 
         // Call a view where the data can be displayed so that the changes
         // can be made to the data
@@ -258,6 +262,27 @@ switch ($action) {
             header('location: /phpmotors/vehicles/');
             exit;
         }
+
+        break;
+
+    /* Called when the user clicks on the view classification link in the nav bar */
+    case 'classification':
+        // Filter, sanitize, and store the second value being sent through the URL
+        $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_STRING);
+
+        // Store an array of vehicles returned from the vehicles model
+        $vehicles = getVehiclesByClassification($classificationName);
+
+        // See if any vehicles were returned
+        if(!count($vehicles)) {
+            $message = "<p class='notice'>Sorry, no $classificationName vehicles could be found. <p>";
+        }
+        else {
+            $vehicleDisplay = buildVehiclesDisplay($vehicles);
+        }
+
+        // Call the view
+        include '../view/classification.php';
 
         break;
 
