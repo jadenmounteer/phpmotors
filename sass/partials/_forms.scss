@@ -46,3 +46,25 @@ textarea {
     height: 120px;
 }
 
+fieldset {
+    display: flex;
+    flex-direction: column;
+    justify-items: start;
+}
+
+fieldset label {
+    text-align: left;
+    width: 100%;
+    margin: 10px;
+}
+
+fieldset input {
+    width: 10%;
+    margin-left: 35px;
+    margin-top: -35px;
+}
+
+.upload-button {
+    display: block;
+    margin-left: 10px;
+}
