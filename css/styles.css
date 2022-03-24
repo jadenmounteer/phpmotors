@@ -15,7 +15,7 @@ body {
   overflow: hidden; }
   @media (min-width: 950px) {
     .content {
-      width: 70%;
+      width: 90%;
       border: 4px solid #4c96d7;
       border-radius: 25px;
       padding-bottom: .5em;
@@ -323,9 +323,39 @@ fieldset input {
 .vehicle-information-div p {
   margin-top: 10px; }
 
+.img-thumbnail-for-larger-screen > .thumbnail-image-display > li:hover {
+  cursor: pointer;
+  transform: scale(1.5); }
+
+@media (min-width: 950px) {
+  .thumbnail-grid {
+    display: grid;
+    grid-template-columns: 20% 60%;
+    gap: 50px; } }
+
 #image-display {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap; }
+
+.thumbnail-image-display {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+  @media (min-width: 950px) {
+    .thumbnail-image-display {
+      flex-direction: column;
+      flex-wrap: nowrap; } }
+
+@media (min-width: 950px) {
+  .disapear-on-larger-screen {
+    display: none; } }
+
+.disapear-on-smaller-screen {
+  display: none; }
+  @media (min-width: 950px) {
+    .disapear-on-smaller-screen {
+      display: block; } }
 
 /*# sourceMappingURL=styles.css.map */

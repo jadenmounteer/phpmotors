@@ -1,0 +1,30 @@
+.thumbnail-image-display {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    // When the screen reaches medium size...
+    @include breakpoint(medium) {
+        flex-direction: column;
+        flex-wrap: nowrap;
+
+    }
+
+}
+
+
+.disapear-on-larger-screen {
+    // When the screen reaches medium size...
+    @include breakpoint(medium) {
+        display: none;
+    }
+}
+
+.disapear-on-smaller-screen {
+    display: none;
+    // When the screen reaches medium size...
+    @include breakpoint(medium) {
+        display: block;
+    }
+}

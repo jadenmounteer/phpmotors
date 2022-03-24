@@ -63,4 +63,20 @@ function checkExistingImage($imgName){
     $stmt->closeCursor();
     return $imageMatch;
 }
+
+// Obtain thumbnail image information from the images table based
+// on the vehicle ID.
+function getThumbnailImageInfo($invId) {
+    $db = phpmotorsConnect();
+    $sql = "SELECT imgPath
+    FROM images
+    WHERE imgPath LIKE '%-tn.%'
+    AND invId = :invId;";
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+    $stmt->execute();
+    $imageArray = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $imageArray;
+}
    

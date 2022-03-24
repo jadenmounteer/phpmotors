@@ -80,7 +80,14 @@ function getInventoryByClassification($classificationId){
 // Get vehicle information by invId
 function getInvItemInfo($invId){
     $db = phpmotorsConnect();
-    $sql = 'SELECT * FROM inventory WHERE invId = :invId';
+    //$sql = 'SELECT * FROM inventory WHERE invId = :invId';
+    $sql = 'SELECT invMake, invModel, invPrice, invDescription, invColor, invStock, img.imgName, img.imgPath, img.imgPrimary
+    FROM inventory i
+    JOIN images img ON i.invId = img.invId
+    WHERE img.invId = :invId 
+    AND img.imgPrimary = 1
+    AND img.imgName NOT LIKE "%-tn.%";';
+    // TODO, I probably should filter out the thumbnail for this query
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
     $stmt->execute();
@@ -158,7 +165,13 @@ function deleteVehicle($invId) {
 // Gets a new list of vehicles based on the classification
 function getVehiclesByClassification($classificationName){
     $db = phpmotorsConnect();
-    $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+    //$sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+    $sql = 'SELECT inventory.invId, images.imgPath as invThumbnail, invMake, invModel FROM inventory 
+    JOIN images on inventory.invId = images.invId
+    WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)
+AND images.imgPrimary = 1
+AND images.imgName LIKE "%-tn.%";';
+
     $stmt = $db->prepare($sql);
     $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
     $stmt->execute();

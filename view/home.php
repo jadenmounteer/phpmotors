@@ -39,7 +39,7 @@
                     </div>
                     <!-- The banner image -->
                     <div class="banner-img-div">
-                        <img class="banner-img responsive-image" src="./images/delorean-no-background.jpg" alt="An image of a Delorean">
+                        <img class="banner-img responsive-image" src="./images/vehicles/delorean-no-background.jpeg" alt="An image of a Delorean">
                     </div>
                     <!-- The call to action bottom button -->
                     <div class="call-to-action-button-div call-to-action-bottom">

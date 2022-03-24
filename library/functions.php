@@ -279,5 +279,17 @@ function resizeImage($old_image_path, $new_image_path, $max_width, $max_height) 
 } // ends resizeImage function
 
 
+// Build the display to show thumbnail images
+function buildThumbnailImageDisplay($imageArray) {
+    $id = '<ul class="thumbnail-image-display">';
+    foreach ($imageArray as $image) {
+     $id .= '<li>';
+     $id .= "<img src='$image[imgPath]' alt='A thumbnail image on PHP Motors.com'>";
+     $id .= '</li>';
+   }
+    $id .= '</ul>';
+    return $id;
+}
+
 
 ?>

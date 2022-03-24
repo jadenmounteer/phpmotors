@@ -33,9 +33,30 @@
                 <?php if(isset($message)) {
                     echo $message; }
                 ?>
-                <?php if(isset($vehicleInformationDisplay)) {
-                    echo $vehicleInformationDisplay;
-                } ?>
+
+                <div class="thumbnail-grid">
+                    <!-- Image thumbnail for larger screens -->
+                    <div class="disapear-on-smaller-screen img-thumbnail-for-larger-screen">
+                        <?php if(isset($thumbnailImageDisplay)) {
+                            echo $thumbnailImageDisplay;
+                        } ?>
+                    </div>
+                    
+                    <?php if(isset($vehicleInformationDisplay)) {
+                        echo $vehicleInformationDisplay;
+                    } ?>
+                </div>
+                
+
+                <!-- Image thumbnail display for mobile -->
+                <div class="disapear-on-larger-screen">
+                    <h2>Vehicle Thumbnails</h2>
+                    <?php if(isset($thumbnailImageDisplay)) {
+                        echo $thumbnailImageDisplay;
+                    } ?>
+                </div>
+                
+
             </section>
         </main>
 

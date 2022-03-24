@@ -7,7 +7,7 @@
 
     // When the screen reaches medium size...
     @include breakpoint(medium) {
-        width: 70%;
+        width: 90%;
         border: 4px solid $border-color; // Give it a blue border
         border-radius: 25px; // Round the corners
         padding-bottom: .5em; // give it some padding

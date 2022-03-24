@@ -22,3 +22,19 @@
 .vehicle-information-div p {
     margin-top: 10px;
 }
+
+.img-thumbnail-for-larger-screen > .thumbnail-image-display > li:hover {
+    cursor: pointer;
+    // Make the images bigger
+    transform: scale(1.5);
+}
+
+.thumbnail-grid {
+    // When the screen reaches medium size...
+    @include breakpoint(medium) {
+        display: grid;
+        grid-template-columns: 20% 60%;
+        gap: 50px;
+    }
+    
+}

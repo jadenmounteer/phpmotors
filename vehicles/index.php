@@ -13,6 +13,9 @@ require_once '../model/main-model.php';
 // Include the vehicles model
 require_once '../model/vehicles-model.php';
 
+// Include the uploads model
+require_once '../model/uploads-model.php';
+
 // Get the functions library
 require_once '../library/functions.php';
 
@@ -303,14 +306,15 @@ switch ($action) {
             $message = 'Sorry, no vehicle information could be found.';
         }
         else {
+            // Grab the vehicle image thumbnail info
+            $thumbnailImages = getThumbnailImageInfo($invId);
+
             // Set the vehicle information to variables so we can access them in the view
             $invMake = $invInfo["invMake"];
             $invModel = $invInfo["invModel"];
             $invPrice = $invInfo["invPrice"];
-
-
             $invDescription = $invInfo["invDescription"];
-            $invImage = $invInfo["invImage"];
+            $invImage = $invInfo["imgPath"];
             $invColor = $invInfo["invColor"];
             $invStock = $invInfo["invStock"];
 
@@ -328,6 +332,10 @@ switch ($action) {
                                             $invImage, 
                                             $invColor, 
                                             $invStock);
+
+            // Generate the thumbnail images display
+            $thumbnailImageDisplay = buildThumbnailImageDisplay($thumbnailImages);
+
         }
 
         // deliver vehicle detail view
