@@ -12,6 +12,8 @@ require_once '../model/main-model.php';
 require_once '../model/accounts-model.php';
 // Get the functions library
 require_once '../library/functions.php';
+// Get the reviews model
+require_once '../model/reviews-model.php';
 
 
 // Get the array of classifications
@@ -294,6 +296,14 @@ switch ($action) {
         $clientLastname = $_SESSION['clientData']['clientLastname'];
         $clientEmail = $_SESSION['clientData']['clientEmail'];
         $clientLevel = $_SESSION['clientData']['clientLevel'];
+        $clientId = $_SESSION['clientData']['clientId'];
+
+        // Get the reviews data
+        $listOfClientReviews = getReviewsByClient($clientId);
+
+        // Build the reviews display
+        $listOfReviews = buildAccountListOfReviews($listOfClientReviews);
+
         include '../view/admin.php'; // Deliver the admin view
         //include '../view/500.php';
         break;

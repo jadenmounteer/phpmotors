@@ -12,7 +12,7 @@
             // This is a link that, when clicked, directs the user to the accounts controller
             // and delivers the client admin view
             $clientFirstname = $_SESSION['clientData']['clientFirstname'];
-            echo "<a class='message-link light-font' href='/phpmotors/accounts/index.php?action=default'>Welcome, $clientFirstname </a>";
+            echo "<a class='message-link light-font' id='welcome-link' href='/phpmotors/accounts/index.php?action=default'>Welcome, $clientFirstname </a>";
 
 
             //  Since the user is logged in, we display a link for them to use to logout

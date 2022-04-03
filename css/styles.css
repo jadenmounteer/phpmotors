@@ -38,7 +38,7 @@ p {
   margin: 10px; }
 
 .message-link {
-  margin: 10px; }
+  margin-left: 10px; }
 
 header {
   display: flex;
@@ -357,5 +357,18 @@ fieldset input {
   @media (min-width: 950px) {
     .disapear-on-smaller-screen {
       display: block; } }
+
+#login-to-ad-review-link {
+  margin-left: 10px; }
+
+.review-info {
+  font-style: italic;
+  font-size: 1.1em; }
+
+.reviews-display {
+  list-style: none; }
+
+.review {
+  margin-top: 20px; }
 
 /*# sourceMappingURL=styles.css.map */

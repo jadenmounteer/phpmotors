@@ -19,6 +19,9 @@ require_once '../model/uploads-model.php';
 // Get the functions library
 require_once '../library/functions.php';
 
+// Include the reviews model
+require_once '../model/reviews-model.php';
+
 
 
 // Get the array of classifications
@@ -297,7 +300,7 @@ switch ($action) {
     case 'vehicleInformation':
         // Filter, sanitize, and store the second value being sent through the URL
         $invId = filter_input(INPUT_GET, 'invId', FILTER_SANITIZE_STRING);
-
+        
         // Grab specific vehicle information
         $invInfo = getInvItemInfo($invId);
 
@@ -323,7 +326,7 @@ switch ($action) {
             $priceString = number_format($invPrice);
             
 
-            // Genererate the display, store it in a variable
+            // Generate the display, store it in a variable
             $vehicleInformationDisplay = buildVehicleInformationDisplay(
                                             $invMake, 
                                             $invModel, 
@@ -335,6 +338,13 @@ switch ($action) {
 
             // Generate the thumbnail images display
             $thumbnailImageDisplay = buildThumbnailImageDisplay($thumbnailImages);
+
+
+            // Get the current list of reviews from the model
+            $listOfReviews = getReviewsByInvItem($invId);
+
+            // Create the list of reviews
+            $_SESSION['listOfReviews'] =  buildListOfReviews($listOfReviews);
 
         }
 

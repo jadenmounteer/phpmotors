@@ -63,6 +63,10 @@
                         echo "<p class='message'>Use this link to manage the inventory.<p>";
                         echo "<a class='message-link light-font' href='/phpmotors/vehicles/'>Vehicle Management</a>";
                     }
+
+                    // Manage reviews
+                    echo "<h2>Manage Your reviews</h2>";
+                    echo $listOfReviews;
                     
                 ?>
             </section>

@@ -292,4 +292,97 @@ function buildThumbnailImageDisplay($imageArray) {
 }
 
 
+// Build the review form
+function buildReviewForm($invId) {
+    // Get the screen name
+    $clientFirstname = $_SESSION['clientData']['clientFirstname'];
+    $clientLastname = $_SESSION['clientData']['clientLastname'];
+    $clientId = $_SESSION['clientData']['clientId'];
+    $firstInitialOfFirstName = $clientFirstname[0];
+    $screenName = $firstInitialOfFirstName . $clientLastname;
+
+    // Create the form
+    $reviewForm = "
+        <div class='form-div' id='review-form-div'>
+        <form class='review-form' action='../reviews/index.php' method='post'>
+            <label for='screenName'>Screen Name:</lable><br>
+            <input type='text' id='screenName' name='screenName' readonly value='$screenName'><br>
+            <label for='reviewText'>Review:</label><br>
+            <textarea id='reviewText' name='reviewText' required></textarea><br>
+            <input class='form-submit-button' type='submit' value='Submit Review'>
+            <input type='hidden' name='action' value='add-new-review'>
+            <input type='hidden' name='invId' value='$invId'>
+            <input type='hidden' name='clientId' value='$clientId'>
+        </form>
+        </div>
+        ";
+    
+    return $reviewForm;
+}
+
+// Build the list of reviews for a vehicle
+function buildListOfReviews($listOfReviews) {
+    $reviewsDisplay;
+    // Check if the list of reviews is empty
+    if(sizeOf($listOfReviews) < 1) {
+        $reviewsDisplay = "<p>Be the first to leave a review.</p>";
+    }
+    else {
+        $reviewsDisplay =  '<ul class="reviews-display">';
+        foreach ($listOfReviews as $review) {
+            // Format the date
+            $formattedTimestamp = formatTimestamp($review['reviewDate']);
+            // Add to the view
+            $reviewsDisplay .= 
+                "
+                <li class='review'>
+                <p class='review-info'>$review[screenName] wrote on $formattedTimestamp<p>
+                <p class='review-text'>$review[reviewText]</p>
+                </li>
+                ";
+
+        }
+        $reviewsDisplay .= '</ul>'; 
+       
+    }
+    return $reviewsDisplay;
+
+}
+
+// Format a timestamp
+function formatTimestamp($timestamp) {
+    $unixTimestamp = strtotime($timestamp); // Formats the date to a unix timestamp
+    return date("j \of M, Y", $unixTimestamp);
+}
+
+// Build the account reviews display
+// This is where the user can edit or delete their reviews
+function buildAccountListOfReviews($listOfClientReviews) {
+    $reviewsDisplay;
+    if(sizeOf($listOfClientReviews) < 1) {
+        $reviewsDisplay = "<p>You do not have any reviews</p>";
+    }
+    else {
+        $reviewsDisplay = '<ul class="reviews-display">';
+        foreach($listOfClientReviews as $review) {
+            // Format the date
+            $formattedTimestamp = formatTimestamp($review['reviewDate']);
+            $reviewsDisplay .= 
+            "
+            <li class='review'>
+                <p class='review-text'>$review[reviewText] <i>(Reviewed on $formattedTimestamp)</i> </p>
+                <a class='review-button' alt='Edit button' href='/phpmotors/reviews/index.php?action=edit-review&reviewId=".urlencode($review['reviewId'])."'>Edit</a>
+                <a class='review-button' alt='Delete button' href='/phpmotors/reviews/index.php?action=confirm-delete-review&reviewId=".urlencode($review['reviewId'])."'>Delete</a>
+            </li>
+            ";
+        }
+        $reviewsDisplay .= '</ul>';
+    }
+
+    return $reviewsDisplay;
+}
+
+
+
+
 ?>

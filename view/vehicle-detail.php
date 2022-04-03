@@ -32,7 +32,14 @@
                 <h1 class="content-title"><?php echo "$invMake $invModel"; ?> </h1>
                 <?php if(isset($message)) {
                     echo $message; }
+
+                    // Display any messages from the session
+                    if (isset($_SESSION['message'])) {
+                        echo $_SESSION['message'];
+                    }
                 ?>
+
+                
 
                 <div class="thumbnail-grid">
                     <!-- Image thumbnail for larger screens -->
@@ -55,6 +62,26 @@
                         echo $thumbnailImageDisplay;
                     } ?>
                 </div>
+            
+            <!-- The customer reviews section -->
+            <h2 class="content-title">Customer Reviews</h2>
+
+            <!-- Check if the user is logged in. Deliver the appropriate content -->
+            <?php
+                if($_SESSION['loggedin']) {
+                    // The form for entering a review
+                    echo '<h3 class="content-title">Review the ' . $invMake . " " . $invModel . ' </h3>';
+                    echo buildReviewForm($invId);
+                }
+                else {
+                    // Since the user is not logged in, we provide different content
+                    echo '<a class="user-login-button" id="login-to-ad-review-link" title="Login to add a review" href="/phpmotors/accounts/index.php?action=login-page">Login to add a review</a>';
+                }
+
+                // Show the list of reviews
+                echo $_SESSION['listOfReviews'];
+            ?>
+
                 
 
             </section>
@@ -68,3 +95,8 @@
     
 </body>
 </html>
+
+<?php
+    // Unset any messages
+    unset($_SESSION['message']);
+?>
